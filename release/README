@@ -1,0 +1,22 @@
+THIS IS ALPHA SOFTWARE.  ONLY USE THESE PROGRAMS IF YOU ARE FAMILIAR WITH THE RISKS OF UNTESTED SOFTWARE AND ARE READY TO TAKE THEM.  
+
+For installation details see INTSALL
+For Copying and liscense information see COPYING
+For information about the author see AUTHORS
+
+Customizing - 
+	The ob3_term and ob3_editor programs can (and should) be set to your liking.  Open them in a text editor and find the line:
+"PROG_LIST="
+Make sure your preferred application is FIRST in the list.  Example
+PROG_LIST="tea kedit gedit SciTE beaver nedit cute"
+I prefer using tea for quick edits, so I have tea listed first.
+
+Menu Generation - 
+	After installation you can run the menu generator program by entering 
+openbox-autogen_menu
+in your terminal.  The program will attempt to back up any existing menu found in ~/.config/openbox/menu.xml .  It is highly recommended you keep a seperate backup copy.  To use the new menu, you will likely have to restart openbox3.  
+
+Bug Reports/Feature Requests
+	Please submit these through the website 
+http://ob3menuizer.berlios.de/
+
