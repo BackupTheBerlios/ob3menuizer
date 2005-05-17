@@ -15,7 +15,7 @@ WHOAMI=`whoami`
 # Set Defaults
 MENUFILENAME="${MENUFILENAME:=${HOME}/.config/openbox/menu.xml}"
 MENUTITLE="${MENUTITLE:=openbox3}"
-
+#BGPATH="${BGPATH:=${HOME}/backgrounds:/usr/share/wallpapers:/usr/local/share/wallpapers:${HOME}/.config/openbox/backgrounds}"
 
 
 
@@ -79,6 +79,7 @@ menu_entry() {
     fi
 }
 
+	
 # Can we actually create ${MENUFILENAME}
 touch ${MENUFILENAME} 2> /dev/null
 if [ $? -ne 0 ]; then
@@ -125,43 +126,94 @@ EOF
 echo "<menu id=\"root-menu\" label= \"${MENUTITLE}\" >" >> ${MENUFILENAME}
 	
 
+	normal_find xlock xlockmore xscreensaver bbrun grun fbrun
+	append "<item label=\"ob3 Terminal\"><action name=\"Execute\"><execute>ob3_term</execute></action></item>"
+	append "<item label=\"ob3 Editor\"><action name=\"Execute\"><execute>ob3_editor</execute></action></item>"
+
 append "<separator />"
 
-	normal_find xlock xlockmore xscreensaver bbrun grun fbrun
-
 append_menu "System Admin"
-   append "<item label=\"root terminal\"><action name=\"Execute\"><execute>xterm -e su</execute></action></item>"
-	append "<item label=\"Edit menu\"><action name=\"Execute\"><execute>ob3_editor ~/.config/openbox/menu.xml</execute></action></item>"
-	append "<item label=\"Regen menu\"><action name=\"Execute\"><execute>openbox-autogen_menu</execute></action></item>"
-	append "<item label=\"Reconfigure\"><action name=\"Reconfigure\" /></item>"
+   append "<item label=\"root terminal\"><action name=\"Execute\"><execute>ob3_term -e su</execute></action></item>"
+	append "<item label=\"Edit this menu\"><action name=\"Execute\"><execute>ob3_editor ~/.config/openbox/menu.xml</execute></action></item>"
+	append "<item label=\"Regen this menu\"><action name=\"Execute\"><execute>openbox-autogen_menu</execute></action></item>"
+	append "<item label=\"Reconfigure ob3\"><action name=\"Reconfigure\" /></item>"
+	append "<item label=\"Edit fstab\"><action name=\"Execute\"><execute>kdesu ob3_editor /etc/fstab</execute></action></item>"
+	append "<item label=\"Edit lilo config\"><action name=\"Execute\"><execute>kdesu ob3_editor /etc/lilo.conf</execute></action></item>"
+	append "<item label=\"Edit make.conf\"><action name=\"Execute\"><execute>kdesu ob3_editor /etc/make.conf</execute></action></item>"
 	
 	normal_find switch switch2 obconf
 append_menu_end
 
+
 append_menu "X-terms"
-	normal_find mrxvt aterm xterm rxvt konsole Eterm gnome-terminal terminal materm urxvt
+	normal_find mrxvt aterm xterm rxvt konsole Eterm gnome-terminal terminal materm urxvt ob3_term
 append_menu_end
 
+
 append_menu "Net"
-	normal_find firefox mozilla-firefox netscape opera mozilla dillo 
-	terminal_find lynx links links2
-	normal_find gaim kopete amsn skype licq 
-	normal_find gtk-gnutella 
-	normal_find kasablanca gftp 
-	terminal_find ftp
-	normal_find sylpheed sylpheed-claws kmail thunderbird evolution evolution2
-	terminal_find pine mutt 
+		append_menu "Browsers"
+			normal_find firefox mozilla-firefox netscape opera mozilla dillo 
+			terminal_find lynx links links2
+		append_menu_end
+		append_menu "IM clients"
+			normal_find gaim kopete amsn skype licq 
+		append_menu_end
+		append_menu "P2P"
+			normal_find gtk-gnutella emule amule azereus limewire kmldonkey mldonkey
+		append_menu_end
+		append_menu "FTP"
+			normal_find kasablanca gftp 
+	      terminal_find ftp
+		append_menu_end
+		append_menu "Mail"
+			normal_find sylpheed sylpheed-claws kmail thunderbird evolution evolution2
+			terminal_find pine mutt 
+		append_menu_end
 	normal_find d4x nmapfe
 append_menu_end
 
+
 append_menu "Editors"
-	normal_find beaver nedit gedit kedit tea SciTE gvim xemacs emacs abiword kwrite kwrite bluefish screem quanta quanta+ cute xedit
-	terminal_find vi elvis jed joe jove nano pico
+		append_menu "X editors"
+			normal_find beaver nedit gedit kedit tea SciTE gvim xemacs emacs abiword kwrite cute xedit
+		append_menu_end
+		append_menu "Console editors"
+			terminal_find vi elvis jed joe jove nano pico
+		append_menu_end
+		append_menu "Development Editors"
+			normal_find bluefish screem quanta quanta+ kdevelop kate anjuta
+			terminal_find motor
+		append_menu_end
+append_menu_end
+
+
+append_menu "File Utilities"
+	   append_menu "File Managers"
+			normal_find gentoo krusader linuxcmd rox emelfm emelfm2 xfm konqueror nautilus
+		append_menu_end
+		append_menu "Archivers"
+			normal_find file-roller guitar ark
+		append_menu_end
+	normal_find xnc kgpg kusermanager gkrellm vmware gkrellm2  
 append_menu_end
 
 append_menu "Multimedia"
- 	normal_find gimp xmms xcdroast ripperX grip xv gqview xlock k3b gtoaster graveman 
+		append_menu "Audio"
+			normal_find xmms ripperX totem kaboodle bmp amorak noatun rhythmbox kscd kaffeine juk kaboodle kmix gmix grip
+			terminal_find alsamixer
+		append_menu_end
+		append_menu "Video"
+			normal_find gmplayer xine kaffeine RealPlay
+			terminal_find mplayer
+		append_menu_end
+		append_menu "Graphics"
+			normal_find  gimp gimp2 xpaint kiconedit scribus inkscape blender xv
+		append_menu_end
+		append_menu "CDRW"
+			normal_find k3b xcdroast graveman grip ripperx gnome-toaster
+		append_menu_end
 append_menu_end
+
 
 append_menu "Games"
 	normal_find bzflag gnibbles gnobots2 tuxpuck gataxx glines bzflag gnibbles gnobots2 tuxpuck gataxx glines \
@@ -172,9 +224,6 @@ append_menu "Games"
 		pingus frozen-bubble supertux powermanga wesnoth
 append_menu_end
 
-append_menu "File Utilities"
-	normal_find gentoo krusader linuxcmd rox emelfm xnc ark kgpg kusermanager emelfm2 gkrellm vmware gkrellm2 xfm konqueror nautilus file-roller guitar 
-append_menu_end
 
 append "<separator />"
 append "<item label=\"Exit\"><action name=\"Exit\" /></item>"
