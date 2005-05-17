@@ -1,0 +1,58 @@
+#!/bin/sh
+# ob3_term
+# 
+# Released under the GPL as part of the ob3 Menuizer package
+#
+# copyright GB Hildenbrand 15/05/2005 18:51:27
+# thanks to Eko M. Budi for much of the code
+
+
+# Make it colourful if aterm available
+
+PROG_LIST="aterm mrxvt eterm wterm konsole terminal rxvt xterm"
+COLOR_LIST="cyan green yellow red blue magenta orange black white"
+
+# launch aterm with different color
+colorfull_term()
+{
+   if [ -f $HOME/.term_color ]; then
+      LAST_COLOR=`cat $HOME/.term_color`
+   else
+      LAST_COLOR=""
+   fi
+   for COLOR in $COLOR_LIST; do
+      #echo $COLOR $LAST_COLOR
+      case "$LAST_COLOR" in
+        "magenta"|"")
+	   break
+	   ;;
+	$COLOR)
+	   LAST_COLOR=""
+	   ;;
+      esac   
+   done;
+   echo $COLOR > $HOME/.term_color
+#   echo Launching $COLOR aterm 
+   exec $PROG -tint $COLOR $@
+}
+
+for CON in $PROG_LIST; do
+   PROG=`which $CON 2> /dev/null`
+   if [ $? = 0 ]; then
+      break
+   fi
+done
+
+echo "Console=$PROG"
+
+case $PROG in
+"")
+   message "ERROR" "Could not find any console program:" "$PROG_LIST"
+   ;;
+*aterm|*mrxvt)
+   colorfull_term $@
+   ;;
+*)
+   echo Launching $PROG
+   exec $PROG $@
+esac

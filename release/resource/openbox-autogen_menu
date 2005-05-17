@@ -1,0 +1,185 @@
+#! /bin/sh
+#
+# Menu Creation script for openbox3
+#
+#Copyright 2005 GB Hildenbrand <gbhilden@gmail.com>
+#
+#Released under the provisions of the GPL
+#
+#Wed Apr 27 16:47:43 2005
+
+
+WHOAMI=`whoami`
+[ "$WHOAMI" = root ] && PATH=/bin:/usr/bin/:/usr/local/bin:/usr/X11R6/bin:$PATH
+
+# Set Defaults
+MENUFILENAME="${MENUFILENAME:=${HOME}/.config/openbox/menu.xml}"
+MENUTITLE="${MENUTITLE:=openbox3}"
+
+
+
+
+case `uname` in
+    Linux|*BSD)
+        find_it() {
+            which $1 > /dev/null 2>&1 && shift && $*
+        }
+
+        find_it_options() {
+            which $1 > /dev/null 2>&1
+        }
+        ;;
+    *)
+        find_it() {
+            file=`which $1 2> /dev/null`
+            if [ -x "$file" ]; then
+                if [ $# -gt 1 ]; then
+                    shift
+                    $*
+                fi
+                return 0
+            else
+                return 1
+            fi
+        }
+
+        find_it_options() {
+            file=`which $1 2> /dev/null`
+            if [ -x "$file" ]; then
+                return 0
+            else
+                return 1
+            fi
+        }
+
+        ;;
+esac
+append() {
+    echo "      $*" >> ${MENUFILENAME}
+}
+
+append_menu() {
+    echo "<menu id=\"$*\" label=\"$*\">" >> ${MENUFILENAME}
+}
+
+append_menu_end() {
+    echo "</menu>" >> ${MENUFILENAME}
+}
+
+menu_entry() {
+    if [ -f "$1" ]; then
+        #                   space&tab here
+        entry_name=`grep '^[	 ]*Name=' "$1" | head -1 | cut -d = -f 2`
+        entry_exec=`grep '^[	 ]*Exec=' "$1" | head -1 | cut -d = -f 2`
+        if [ -n "$entry_name" -a -n "$entry_exec" ]; then
+            append "<item label=\"$entry_name\">
+		<action name=\"Execute\"><execute>$entry_exec</execute></action>
+	         </item>"
+        fi
+    fi
+}
+
+# Can we actually create ${MENUFILENAME}
+touch ${MENUFILENAME} 2> /dev/null
+if [ $? -ne 0 ]; then
+    echo "Fatal error: can't create or write to $MENUFILENAME" >&2
+    exit 1
+fi
+
+# backup menu
+if [ -w "${MENUFILENAME}" ]; then
+    if [ -f ${MENUFILENAME}.firstbak ]; then
+        cp ${MENUFILENAME} ${MENUFILENAME}.firstbak
+    fi
+    mv ${MENUFILENAME} ${MENUFILENAME}.bak
+fi
+
+normal_find() {
+    while [ "$1" ]; do
+        find_it $1     append "<item label=\"$1\">
+		<action name=\"Execute\"><execute>$1</execute></action>
+	         </item>"
+        shift
+    done
+}
+
+terminal_find() {
+	while [ "$1" ]; do
+		 find_it $1     append "<item label=\"$1\">
+		<action name=\"Execute\"><execute>ob3_term -e $1</execute></action>
+				</item>"
+		  shift
+	done
+}
+
+# Start of menu
+cat << EOF > ${MENUFILENAME}
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu xmlns="http://openbox.org/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://openbox.org/
+                file:///usr/X11R6/share/openbox/menu.xsd">
+
+EOF
+echo "<menu id=\"root-menu\" label= \"${MENUTITLE}\" >" >> ${MENUFILENAME}
+	
+
+append "<separator />"
+
+	normal_find xlock xlockmore xscreensaver bbrun grun fbrun
+
+append_menu "System Admin"
+   append "<item label=\"root terminal\"><action name=\"Execute\"><execute>xterm -e su</execute></action></item>"
+	append "<item label=\"Edit menu\"><action name=\"Execute\"><execute>ob3_editor ~/.config/openbox/menu.xml</execute></action></item>"
+	append "<item label=\"Regen menu\"><action name=\"Execute\"><execute>openbox-autogen_menu</execute></action></item>"
+	append "<item label=\"Reconfigure\"><action name=\"Reconfigure\" /></item>"
+	
+	normal_find switch switch2 obconf
+append_menu_end
+
+append_menu "X-terms"
+	normal_find mrxvt aterm xterm rxvt konsole Eterm gnome-terminal terminal materm urxvt
+append_menu_end
+
+append_menu "Net"
+	normal_find firefox mozilla-firefox netscape opera mozilla dillo 
+	terminal_find lynx links links2
+	normal_find gaim kopete amsn skype licq 
+	normal_find gtk-gnutella 
+	normal_find kasablanca gftp 
+	terminal_find ftp
+	normal_find sylpheed sylpheed-claws kmail thunderbird evolution evolution2
+	terminal_find pine mutt 
+	normal_find d4x nmapfe
+append_menu_end
+
+append_menu "Editors"
+	normal_find beaver nedit gedit kedit tea SciTE gvim xemacs emacs abiword kwrite kwrite bluefish screem quanta quanta+ cute xedit
+	terminal_find vi elvis jed joe jove nano pico
+append_menu_end
+
+append_menu "Multimedia"
+ 	normal_find gimp xmms xcdroast ripperX grip xv gqview xlock k3b gtoaster graveman 
+append_menu_end
+
+append_menu "Games"
+	normal_find bzflag gnibbles gnobots2 tuxpuck gataxx glines bzflag gnibbles gnobots2 tuxpuck gataxx glines \
+		gtans gtkboard gsoko icebreaker ltris lbreakout2 lpairs lmarbles alienBlaster vexed rocksndiamonds \
+		pingus frozen-bubble supertux powermanga  gnect mahjongg gnomine gnome-stones gnometris \
+		gnotravex gnotski iagno knights eboard xboard scid freecell pysol gtali tuxracer xsnow xeyes \
+		smclone openmortal quake2 quake3 skoosh same-gnome enigma xbill scorched3d \
+		pingus frozen-bubble supertux powermanga wesnoth
+append_menu_end
+
+append_menu "File Utilities"
+	normal_find gentoo krusader linuxcmd rox emelfm xnc ark kgpg kusermanager emelfm2 gkrellm vmware gkrellm2 xfm konqueror nautilus file-roller guitar 
+append_menu_end
+
+append "<separator />"
+append "<item label=\"Exit\"><action name=\"Exit\" /></item>"
+
+append_menu_end
+
+append "</openbox_menu>"
+
