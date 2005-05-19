@@ -45,6 +45,12 @@ sleep 3
 
 ./resource/echoc "Program files successfully installed.  Installing documentation and man page." green
 
-sleep 3
+cp ./man/openbox-generate_menu.1 $MYMANPATH
+cp ./man/ob3_editor.1 $MYMANPATH
+cp ./man/ob3_term.1 $MYMANPATH
+
+./resource/echoc "Man pages successfully installed.  Finishing installation."
+
+sleep 2
 
 echo "ob3 Menuizer successfully installed.  Please see the documentation for usage."
