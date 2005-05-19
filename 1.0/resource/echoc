@@ -1,0 +1,36 @@
+#!/bin/sh
+
+if [ "$RCINITCOLORS" = "NO" ] ; then
+	echo "$1"
+else
+
+	case "$2" in
+		black)
+			echo "[01;30m$1[00m"
+		;;
+		red)
+			echo "[01;31m$1[00m"
+		;;
+		green)
+			echo "[01;32m$1[00m"
+		;;
+		yellow)
+			echo "[01;33m$1[00m"
+		;;
+		blue)
+			echo "[01;34m$1[00m"
+		;;
+		magenta)
+			echo "[01;35m$1[00m"
+		;;
+		cyan)
+			echo "[01;36m$1[00m"
+		;;
+		white)
+			echo "[01;37m$1[00m"
+		;;
+		*)
+			echo "$1"
+		;;
+	esac
+fi

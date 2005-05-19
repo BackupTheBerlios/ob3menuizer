@@ -1,0 +1,27 @@
+#!/bin/sh
+# ob3_editor
+# 
+# Released under the GPL as part of the ob3 Menuizer package
+#
+# copyright GB Hildenbrand 15/05/2005 18:51:27
+
+#add your favorite x editor here if not listed.  This script will use the FIRST one available in the list
+PROG_LIST="tea kedit gedit SciTE beaver nedit cute"
+
+for EDT in $PROG_LIST; do
+   PROG=`which $EDT 2> /dev/null`
+   if [ $? = 0 ]; then
+      break
+   fi
+done
+
+echo "Editor=$PROG"
+
+case $PROG in
+"")
+   message "ERROR" "Could not find any editor program:" "$PROG_LIST"
+   ;;
+*)
+   echo Launching $PROG
+   exec $PROG $@
+esac

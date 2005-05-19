@@ -1,0 +1,5 @@
+1.  open installer.sh in your favorite text editor.
+2.  edit default installation paths if desired
+3.  open your favorite terminal
+4.  su to root
+5.  run ./installer.sh
