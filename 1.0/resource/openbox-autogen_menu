@@ -137,9 +137,9 @@ append_menu "System Admin"
 	append "<item label=\"Edit this menu\"><action name=\"Execute\"><execute>ob3_editor ~/.config/openbox/menu.xml</execute></action></item>"
 	append "<item label=\"Regen this menu\"><action name=\"Execute\"><execute>openbox-autogen_menu</execute></action></item>"
 	append "<item label=\"Reconfigure ob3\"><action name=\"Reconfigure\" /></item>"
-	append "<item label=\"Edit fstab\"><action name=\"Execute\"><execute>kdesu ob3_editor /etc/fstab</execute></action></item>"
-	append "<item label=\"Edit lilo config\"><action name=\"Execute\"><execute>kdesu ob3_editor /etc/lilo.conf</execute></action></item>"
-	append "<item label=\"Edit make.conf\"><action name=\"Execute\"><execute>kdesu ob3_editor /etc/make.conf</execute></action></item>"
+	append "<item label=\"Edit fstab\"><action name=\"Execute\"><execute>sudo ob3_editor /etc/fstab</execute></action></item>"
+	append "<item label=\"Edit lilo config\"><action name=\"Execute\"><execute>sudo ob3_editor /etc/lilo.conf</execute></action></item>"
+	append "<item label=\"Edit make.conf\"><action name=\"Execute\"><execute>sudo ob3_editor /etc/make.conf</execute></action></item>"
 	
 	normal_find switch switch2 obconf makepasswd passook pwgen 
 append_menu_end
