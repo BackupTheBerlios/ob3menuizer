@@ -192,6 +192,7 @@ append_menu_end
 append_menu "File Utilities"
 	   append_menu "File Managers"
 			normal_find gentoo krusader linuxcmd rox emelfm emelfm2 xfm konqueror nautilus
+			terminal_find mc
 		append_menu_end
 		append_menu "Archivers"
 			normal_find file-roller guitar ark
@@ -201,7 +202,8 @@ append_menu_end
 
 append_menu "Multimedia"
 		append_menu "Audio"
-			normal_find xmms ripperX totem kaboodle bmp amorak noatun rhythmbox kscd kaffeine juk kaboodle kmix gmix grip
+			normal_find xmms ripperX totem kaboodle bmp amorak noatun rhythmbox kscd \
+				kaffeine juk kaboodle kmix gmix grip
 			terminal_find alsamixer
 		append_menu_end
 		append_menu "Video"
