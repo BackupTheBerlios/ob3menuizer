@@ -40,8 +40,8 @@ fi
 cp ./resource/ob3_editor $BINPATH
 cp ./resource/ob3_term $BINPATH
 cp ./resource/openbox-autogen_menu $BINPATH
+cp ./resource/ob3.png $HOME/.config/openbox/
 
-sleep 3
 
 ./resource/echoc "Program files successfully installed.  Installing documentation and man page." green
 
@@ -51,6 +51,5 @@ cp ./man/ob3_term.1 $MYMANPATH
 
 ./resource/echoc "Man pages successfully installed.  Finishing installation."
 
-sleep 2
 
 echo "ob3 Menuizer successfully installed.  Please see the documentation for usage."
