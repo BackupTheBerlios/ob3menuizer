@@ -152,7 +152,7 @@ append_menu_end
 
 append_menu "Net"
 		append_menu "Browsers"
-			normal_find firefox mozilla-firefox netscape opera mozilla dillo 
+			normal_find firefox mozilla-firefox netscape opera mozilla dillo firefox-bin 
 			terminal_find lynx links links2
 		append_menu_end
 		append_menu "IM clients"
@@ -189,7 +189,8 @@ append_menu_end
 
 append_menu "File Utilities"
 	   append_menu "File Managers"
-			normal_find gentoo krusader linuxcmd rox emelfm emelfm2 xfm konqueror nautilus
+			normal_find gentoo krusader linuxcmd rox emelfm emelfm2 xfm konqueror \
+			 nautilus endeavour2 evidence 
 		append_menu_end
 		append_menu "Archivers"
 			normal_find file-roller guitar ark
@@ -207,7 +208,7 @@ append_menu "Multimedia"
 			terminal_find mplayer
 		append_menu_end
 		append_menu "Graphics"
-			normal_find  gimp gimp2 xpaint kiconedit scribus inkscape blender xv
+			normal_find  gimp gimp2 xpaint kiconedit scribus inkscape blender xv gimp-2.2
 		append_menu_end
 		append_menu "CDRW"
 			normal_find k3b xcdroast graveman grip ripperx gnome-toaster
