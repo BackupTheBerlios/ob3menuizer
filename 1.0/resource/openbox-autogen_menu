@@ -169,7 +169,7 @@ append_menu "Net"
 			normal_find sylpheed sylpheed-claws kmail thunderbird evolution evolution2
 			terminal_find pine mutt 
 		append_menu_end
-	normal_find d4x nmapfe
+	normal_find d4x nmapfe aria axel drivel emphetamine 
 append_menu_end
 
 
@@ -195,7 +195,7 @@ append_menu "File Utilities"
 		append_menu "Archivers"
 			normal_find file-roller guitar ark
 		append_menu_end
-	normal_find xnc kgpg kusermanager gkrellm vmware gkrellm2  
+	normal_find xnc kgpg kusermanager gkrellm vmware gkrellm2 gnomba
 append_menu_end
 
 append_menu "Multimedia"
@@ -204,7 +204,7 @@ append_menu "Multimedia"
 			terminal_find alsamixer
 		append_menu_end
 		append_menu "Video"
-			normal_find gmplayer xine kaffeine RealPlay
+			normal_find gmplayer xine kaffeine realplay gxine 
 			terminal_find mplayer
 		append_menu_end
 		append_menu "Graphics"
