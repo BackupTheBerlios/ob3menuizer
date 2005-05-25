@@ -40,7 +40,7 @@ fi
 cp ./resource/ob3_editor $BINPATH
 cp ./resource/ob3_term $BINPATH
 cp ./resource/openbox-autogen_menu $BINPATH
-cp ./resource/ob3.png $HOME/.config/openbox/
+#cp ./resource/ob3.png $HOME/.config/openbox/
 
 
 ./resource/echoc "Program files successfully installed.  Installing documentation and man page." green
