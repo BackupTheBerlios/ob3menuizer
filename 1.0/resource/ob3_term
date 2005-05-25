@@ -9,7 +9,7 @@
 
 # Make it colourful if aterm available
 
-PROG_LIST="aterm mrxvt eterm wterm konsole terminal rxvt xterm"
+PROG_LIST="aterm mrxvt urxvt eterm wterm konsole terminal rxvt xterm"
 COLOR_LIST="cyan green yellow red blue magenta orange black white"
 
 # launch aterm with different color
