@@ -1,0 +1,28 @@
+#!/bin/sh
+#ob3_term_edit
+#
+# Released under the GPL as part of the ob3 Menuizer package
+#
+#copyright GB Hildenbrand 06/12/2005 
+#
+#add your favorite console editor here if not listed.  This script will use the FIRST one available in the list
+
+PROG_LIST="nano pico vi elvis mcedit joe jed jove emacs"
+
+for EDT in $PROG_LIST; do
+   PROG=`which $EDT 2> /dev/null`
+   if [ $? = 0 ]; then
+      break
+   fi
+done
+
+echo "Editor=$PROG"
+
+case $PROG in
+"")
+   message "ERROR" "Could not find any editor program:" "$PROG_LIST"
+   ;;
+*)
+   echo Launching $PROG
+   exec $PROG $@
+esac
