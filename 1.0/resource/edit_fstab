@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+#fstab editor
+#
+
+xterm -e sudo /usr/local/bin/ob3_term_edit /etc/fstab
