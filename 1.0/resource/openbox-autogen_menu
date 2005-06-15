@@ -137,11 +137,8 @@ append_menu "System Admin"
 	append "<item label=\"Edit this menu\"><action name=\"Execute\"><execute>ob3_editor ~/.config/openbox/menu.xml</execute></action></item>"
 	append "<item label=\"Regen this menu\"><action name=\"Execute\"><execute>openbox-autogen_menu</execute></action></item>"
 	append "<item label=\"Reconfigure ob3\"><action name=\"Reconfigure\" /></item>"
-	append "<item label=\"Edit fstab\"><action name=\"Execute\"><execute>kdesu ob3_editor /etc/fstab</execute></action></item>"
-	append "<item label=\"Edit lilo config\"><action name=\"Execute\"><execute>kdesu ob3_editor /etc/lilo.conf</execute></action></item>"
-	append "<item label=\"Edit make.conf\"><action name=\"Execute\"><execute>kdesu ob3_editor /etc/make.conf</execute></action></item>"
-	
-	normal_find switch switch2 obconf
+		
+	normal_find edit_fstab edit_lilo edit_make edit_package.keywords edit_package.use gtk-chtheme switch switch2 obconf gpa gpasman pogo
 append_menu_end
 
 
@@ -159,14 +156,14 @@ append_menu "Net"
 			normal_find gaim kopete amsn skype licq 
 		append_menu_end
 		append_menu "P2P"
-			normal_find gtk-gnutella emule amule azereus limewire kmldonkey mldonkey
+			normal_find gtk-gnutella emule amule azereus limewire kmldonkey mldonkey giFToxic 
 		append_menu_end
 		append_menu "FTP"
 			normal_find kasablanca gftp 
 	      terminal_find ftp
 		append_menu_end
 		append_menu "Mail"
-			normal_find sylpheed sylpheed-claws kmail thunderbird evolution evolution2
+			normal_find sylpheed sylpheed-claws kmail thunderbird evolution evolution2 thunderbird-bin
 			terminal_find pine mutt 
 		append_menu_end
 	normal_find d4x nmapfe aria axel drivel emphetamine 
@@ -195,7 +192,7 @@ append_menu "File Utilities"
 		append_menu "Archivers"
 			normal_find file-roller guitar ark
 		append_menu_end
-	normal_find xnc kgpg kusermanager gkrellm vmware gkrellm2 gnomba
+	normal_find xnc kgpg kusermanager gkrellm vmware gkrellm2 gnomba ntodo
 append_menu_end
 
 append_menu "Multimedia"
@@ -208,7 +205,7 @@ append_menu "Multimedia"
 			terminal_find mplayer
 		append_menu_end
 		append_menu "Graphics"
-			normal_find  gimp gimp2 xpaint kiconedit scribus inkscape blender xv gimp-2.2
+			normal_find  gimp gimp2 xpaint kiconedit scribus inkscape blender xv gimp-2.2 gcolor
 		append_menu_end
 		append_menu "CDRW"
 			normal_find k3b xcdroast graveman grip ripperx gnome-toaster
