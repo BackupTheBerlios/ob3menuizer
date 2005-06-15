@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+#make.conf editor
+#
+
+xterm -e sudo /usr/local/bin/ob3_term_edit /etc/portage/package.keywords
