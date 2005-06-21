@@ -28,7 +28,7 @@ PORTAGEPATH="${PORTAGEPATH:=/etc/portage}"
 if [ -d "${BINPATH}" ]; then
 	./resource/echoc "Binary directory path is good." green
 else
-	./resource/echoc "Can't find $BINPATH .  Install will exit." red
+	./resource/echoc "Can't find $BINPATH .  Install will exit. Please edit the install script with the correct bin path." red
 	exit
 fi
 
@@ -62,11 +62,13 @@ fi
 if [ -d "$HOME/.config/openbox" ]; then
 	cp ./resource/ob3.png $HOME/.config/openbox/
 else
-	cp ./resource/ob3.png $HOME
+	mkdir $HOME/.config
+	mkdir $HOME/.config/openbox
+	cp ./resource/ob3.png $HOME/.config/openbox/
 fi
 
 
-./resource/echoc "Program files successfully installed.  Installing documentation and man page." green
+./resource/echoc "Program files successfully installed.  Installing documentation and man pages." green
 
 cp ./man/openbox-generate_menu.1 $MYMANPATH
 cp ./man/ob3_editor.1 $MYMANPATH
