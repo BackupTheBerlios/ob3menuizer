@@ -83,7 +83,7 @@ menu_entry() {
 # Can we actually create ${MENUFILENAME}
 touch ${MENUFILENAME} 2> /dev/null
 if [ $? -ne 0 ]; then
-    echo "Fatal error: can't create or write to $MENUFILENAME" >&2
+    echo "Fatal error: can't create or write to $MENUFILENAME .  You need to create the ${HOME}/.config/openbox/ directory so I can put your new menu file in it :) " >&2
     exit 1
 fi
 
@@ -138,7 +138,7 @@ append_menu "System Admin"
 	append "<item label=\"Regen this menu\"><action name=\"Execute\"><execute>openbox-autogen_menu</execute></action></item>"
 	append "<item label=\"Reconfigure ob3\"><action name=\"Reconfigure\" /></item>"
 		
-	normal_find edit_fstab edit_lilo edit_make edit_package.keywords edit_package.use gtk-chtheme \
+	normal_find edit_fstab edit_lilo edit_make.conf edit_package.keywords edit_package.use gtk-chtheme \
     	switch switch2 obconf gpa gpasman pogo gtkdiskfree
 append_menu_end
 
@@ -149,7 +149,8 @@ append_menu_end
 
 
 append_menu "Net"
-		append_menu "Browsers"
+       normal_find d4x nmapfe aria axel drivel emphetamine xchat xchat-2
+        	append_menu "Browsers"
 			normal_find firefox mozilla-firefox netscape opera mozilla dillo firefox-bin 
 			terminal_find lynx links links2
 		append_menu_end
@@ -161,14 +162,14 @@ append_menu "Net"
 		append_menu_end
 		append_menu "FTP"
 			normal_find kasablanca gftp 
-	      terminal_find ftp
+	                terminal_find ftp
 		append_menu_end
 		append_menu "Mail"
 			normal_find sylpheed sylpheed-claws kmail thunderbird evolution evolution2 \
 				thunderbird-bin
 			terminal_find pine mutt 
 		append_menu_end
-	normal_find d4x nmapfe aria axel drivel emphetamine xchat xchat-2 
+	
 append_menu_end
 
 
@@ -182,7 +183,7 @@ append_menu "Editors"
 		append_menu_end
 		append_menu "Development Editors"
 			normal_find bluefish screem quanta quanta+ kdevelop kate anjuta \
-				glimmer
+				glimmer gtkdiff
 			terminal_find motor
 		append_menu_end
 append_menu_end
@@ -219,6 +220,9 @@ append_menu "Multimedia"
 		append_menu_end
 append_menu_end
 
+append_menu "Office"
+	normal_find ooffice oocalc oodraw ooimpress oomath ooweb oowriter abiword 
+append_menu_end
 
 append_menu "Games"
 	normal_find bzflag gnibbles gnobots2 tuxpuck gataxx glines bzflag gnibbles gnobots2 tuxpuck gataxx glines \
